@@ -1,0 +1,8 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+.words{
+	font-family: Montserrat;
+	text-align: center;
+	margin: auto;
+	padding:50px;
+	font-size: 40px;
+}

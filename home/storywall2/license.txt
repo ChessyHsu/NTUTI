@@ -1,10 +1,10 @@
 
 
 <!--
-Copyright (c) 2017 by 徐嘉琪 (http://codepen.io/Chessy/pen/MvJzgp)
+Copyright (c) 2017 by 徐嘉琪 (https://codepen.io/Chessy/pen/JyemwV)
 
 
-Fork of an original work by Mads Håkansson (http://codepen.io/madshaakansson/pen/xwmzK)
+Fork of an original work by Giana (https://codepen.io/giana/pen/YZWjQy)
 
 
 

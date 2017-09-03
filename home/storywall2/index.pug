@@ -1,0 +1,16 @@
+- var lipsum = ['1','2','3', '4', '5' , '6', '7', '8'];
+
+h1 Hover around the boxes below
+
+- var rows = 4;
+.container
+  while rows--
+    .row
+      - var cols = Math.floor(Math.random() * 6 + 1);
+      while cols--
+        - var photo = Math.floor(Math.random() * 300);
+        .col
+          .photo-container(style="background-image:url(https://source.unsplash.com/600x250/?sig=" + photo + ");")
+          h2 Image #{photo} 
+          .slide
+            p #{lipsum[cols]}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>首頁</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript" src="paper-full.min.js"></script>
+    <script type="text/javascript" src="dots.js" canvas="dotsCanvas"></script>
+    <!-- a sentence -->
+    <link rel="stylesheet" href="css/words.css">
+    <!-- slideshow -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="css/slideshow.css">
+</head>
+
+<body>
+    <nav role='navigation'>
+        <ul>
+            <li><a class="link" href="#">關於我們</a>
+                <ul>
+                    <li><a href="">願景</a></li>
+                    <li><a href="">任務</a></li>
+                    <li><a href="">團隊</a></li>
+                </ul>
+            </li>
+            <li><a class="link" href="#">數位學習</a>
+                <ul>
+                    <li><a href="">coursera課程</a></li>
+                    <li><a href="">校內課程</a></li>
+                    <li><a href="">演講影片</a></li>
+                </ul>
+            </li>
+            <li><a class="link" href="#">部落格</a></li>
+            <li><a class="link" href="#">捐助</a></li>
+        </ul>
+    </nav>
+    <!-- invisible dots -->
+    <canvas id="dotCanvas" resize></canvas>
+    <!-- a sentence -->
+    <div class="words">
+        keep distance.
+    </div>
+    <!-- slideshow -->
+    <div class="w3-content w3-display-container" style="max-width:800px">
+        <img class="mySlides" src="https://raw.githubusercontent.com/supahfunk/supah-codepen/master/canyon-1.jpg" style="width:100%">
+        <img class="mySlides" src="https://raw.githubusercontent.com/supahfunk/supah-codepen/master/canyon-2.jpg" style="width:100%">
+        <img class="mySlides" src="https://raw.githubusercontent.com/supahfunk/supah-codepen/master/canyon-3.jpg" style="width:100%">
+        <img class="mySlides" src="https://raw.githubusercontent.com/supahfunk/supah-codepen/master/canyon-4.jpg" style="width:100%">
+        <div class="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle" style="width:100%">
+            <div class="w3-left w3-hover-text-khaki" onclick="plusDivs(-1)">&#10094;</div>
+            <div class="w3-right w3-hover-text-khaki" onclick="plusDivs(1)">&#10095;</div>
+            <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(1)"></span>
+            <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(2)"></span>
+            <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(3)"></span>
+            <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(4)"></span>
+        </div>
+    </div>
+    <!-- slideshow -->
+    <script src="js/slideshow.js"></script>
+</body>
+
+</html>
