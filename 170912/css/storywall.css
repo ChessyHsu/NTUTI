@@ -1,0 +1,160 @@
+@import url("https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Roboto");
+body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    /*background-color: #f2f2f2;*/
+}
+
+a .photo-style,
+a .photo-container .photo-one,
+.photo-container a .photo-one,
+a .photo-container .photo-two,
+.photo-container a .photo-two,
+a .photo-container .photo-three,
+.photo-container a .photo-three {
+    box-sizing: border-box;
+    width: 315px;
+    height: 365px;
+    background-color: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0px 2px 6px 1px rgba(0, 0, 0, 0.5);
+    transition: all .5s ease;
+}
+
+a .photo-style:hover,
+a .photo-container .photo-one:hover,
+.photo-container a .photo-one:hover,
+a .photo-container .photo-two:hover,
+.photo-container a .photo-two:hover,
+a .photo-container .photo-three:hover,
+.photo-container a .photo-three:hover {
+    transform: rotate(0);
+    transform: scale(1.13);
+    box-shadow: 0px 4px 8px 3px rgba(0, 0, 0, 0.5);
+}
+
+a .photo-style:hover:hover .photo-mark,
+a .photo-container .photo-one:hover:hover .photo-mark,
+.photo-container a .photo-one:hover:hover .photo-mark,
+a .photo-container .photo-two:hover:hover .photo-mark,
+.photo-container a .photo-two:hover:hover .photo-mark,
+a .photo-container .photo-three:hover:hover .photo-mark,
+.photo-container a .photo-three:hover:hover .photo-mark {
+    position: relative;
+}
+
+a .photo-style:hover:hover .photo-mark:before,
+a .photo-container .photo-one:hover:hover .photo-mark:before,
+.photo-container a .photo-one:hover:hover .photo-mark:before,
+a .photo-container .photo-two:hover:hover .photo-mark:before,
+.photo-container a .photo-two:hover:hover .photo-mark:before,
+a .photo-container .photo-three:hover:hover .photo-mark:before,
+.photo-container a .photo-three:hover:hover .photo-mark:before {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    content: "more";
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    left: 0;
+    color: #fff;
+    font-size: 2em;
+    font-family: "Gloria Hallelujah";
+}
+
+a .photo-style .photo-mark,
+a .photo-container .photo-one .photo-mark,
+.photo-container a .photo-one .photo-mark,
+a .photo-container .photo-two .photo-mark,
+.photo-container a .photo-two .photo-mark,
+a .photo-container .photo-three .photo-mark,
+.photo-container a .photo-three .photo-mark {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    overflow: hidden;
+}
+
+a .photo-style .photo-mark img,
+a .photo-container .photo-one .photo-mark img,
+.photo-container a .photo-one .photo-mark img,
+a .photo-container .photo-two .photo-mark img,
+.photo-container a .photo-two .photo-mark img,
+a .photo-container .photo-three .photo-mark img,
+.photo-container a .photo-three .photo-mark img {
+    object-fit: cover;
+}
+
+a .photo-style p,
+a .photo-container .photo-one p,
+.photo-container a .photo-one p,
+a .photo-container .photo-two p,
+.photo-container a .photo-two p,
+a .photo-container .photo-three p,
+.photo-container a .photo-three p {
+    position: absolute;
+    font-family: 'Gloria Hallelujah', cursive;
+    font-weight: bold;
+    color: #222;
+    font-size: 2em;
+    text-align: center;
+    right: 0;
+    left: 0;
+    bottom: -25px;
+}
+
+.photo-container > div {
+    position: relative;
+}
+
+.photo-container {
+    margin: auto;
+    width: 90%;
+    max-width: 1000px;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.photo-container a:first-child {
+    z-index: 30;
+}
+
+.photo-container a:nth-child(2) {
+    z-index: 20;
+}
+
+.photo-container a:nth-child(2):hover {
+    z-index: 50;
+}
+
+.photo-container a:nth-child(3) {
+    z-index: 30;
+}
+
+.photo-container .photo-one {
+    transform: rotate(-20deg);
+    z-index: 60;
+    margin-right: -50px;
+}
+
+.photo-container .photo-two {
+    transform: rotate(7deg);
+    z-index: 30;
+}
+
+.photo-container .photo-three {
+    transform: rotate(10deg);
+    z-index: 50;
+    margin-left: -80px;
+}
