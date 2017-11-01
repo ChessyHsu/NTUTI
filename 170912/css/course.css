@@ -1,0 +1,23 @@
+main {
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+}
+
+.extra-margins {
+  margin-top: 1rem;
+  margin-bottom: 2.5rem;
+}
+.navbar {
+  background-color: #3b3b3f;
+}
+
+footer.page-footer {
+  background-color: #3b3b3f;
+  margin-top: 2rem;
+}
+.main-content {
+  height: auto;
+	padding: 30px 7%;
+	position: relative;
+  width: 60%;
+}
