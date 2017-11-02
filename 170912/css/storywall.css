@@ -58,7 +58,7 @@ a .photo-container .photo-three:hover:hover .photo-mark:before,
     justify-content: center;
     align-items: center;
     content: "more";
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.3);
     width: 100%;
     height: 100%;
     position: absolute;
@@ -92,6 +92,7 @@ a .photo-container .photo-two .photo-mark img,
 a .photo-container .photo-three .photo-mark img,
 .photo-container a .photo-three .photo-mark img {
     object-fit: cover;
+    background-color: rgba(0, 0, 0, 0.8 );
 }
 
 a .photo-style p,
@@ -153,5 +154,5 @@ a .photo-container .photo-three p,
 
 .photo-container .photo-three {
     z-index: 50;
-    margin-left: -0px;
+    margin-left: -100px;
 }
