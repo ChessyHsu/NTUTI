@@ -229,7 +229,7 @@ var slideIndex = 1;
 showSlides(slideIndex);
 
 var cap = document.getElementsByClassName("slideText");
-var time = 5000; // in ms
+var time = 10000; // in ms
 var delta = 100; // in ms
 var progress = 0;
 var timer = setInterval(progBar, delta);
@@ -243,7 +243,7 @@ function currentSlide(n) {
 } 
 
 function progBar() {
-  progress += Math.abs(delta / time);
+  progress += Math.abs(delta / time) * 100;
   cap[slideIndex-1].style.background = "linear-gradient(90deg, rgba(0,0, 0, 0.8) " + progress + "%, rgba(0,0,0,0.4) 0%)";
   if(progress >= 100)
   {
