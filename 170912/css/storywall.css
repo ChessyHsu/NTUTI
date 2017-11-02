@@ -143,18 +143,15 @@ a .photo-container .photo-three p,
 }
 
 .photo-container .photo-one {
-    transform: rotate(-20deg);
     z-index: 60;
-    margin-right: -50px;
+    margin-right: -0px;
 }
 
 .photo-container .photo-two {
-    transform: rotate(7deg);
     z-index: 30;
 }
 
 .photo-container .photo-three {
-    transform: rotate(10deg);
     z-index: 50;
-    margin-left: -80px;
+    margin-left: -0px;
 }

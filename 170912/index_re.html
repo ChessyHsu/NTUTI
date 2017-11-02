@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>index_re</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel="stylesheet" href="css/parallax.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!--dots-->
+    <script type="text/javascript" src="js/paper-full.min.js"></script>
+
+    <!--slideshow-->
+    <link rel="stylesheet" href="css/slideshow.css">
+
+    <!--storywall-->
+    <link rel="stylesheet" href="css/storywall.css">
+
+    <!-- footer -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans|Oswald:300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel="stylesheet" href="css/footer.css">
+</head>
+
+<body>
+    <nav role='navigation' class='top'>
+        <ul>
+            <li><a class="link" href="#">關於我們</a>
+                <ul>
+                    <li><a href="">願景</a></li>
+                    <li><a href="">任務</a></li>
+                    <li><a href="">團隊</a></li>
+                </ul>
+            </li>
+            <li><a class="link" href="#">數位學習</a>
+                <ul>
+                    <li><a href="">coursera課程</a></li>
+                    <li><a href="">校內課程</a></li>
+                    <li><a href="">演講影片</a></li>
+                </ul>
+            </li>
+            <li><a class="link" href="#">部落格</a></li>
+            <li><a class="link" href="#">捐助</a></li>
+        </ul>
+    </nav>
+
+
+    <div class="container">
+        <section class="background">
+            <div class="content-wrapper">
+                <script type="text/paperscript" canvas="canvas_dots">
+// Ported from original Metaball script by SATO Hiroyuki
+// http://park12.wakwak.com/~shp/lc/et/en_aics_script.html
+project.currentStyle = {
+    fillColor: 'purple'
+};
+
+var ballPositions = [ [0, 0], [2000, 1400], [0, 1400], [2000, 0], [77, 1311], [1975, 1243], [63, 1156], [1979, 149], [38, 121], [182, 1367], [1930, 260], [1839, 329], [185, 137], [177, 307], [1880, 1345], [227, 1156], [1783, 220], [16, 301], [1995, 358], [222, 992], [1708, 119], [1610, 180], [81, 1015], [66, 412], [1798, 1265], [169, 483], [1846, 495], [305, 1068], [78, 579], [1881, 87], [1710, 473], [1939, 574], [1788, 13], [1495, 245], [264, 862], [357, 779], [1325, 242], [1362, 378], [509, 797], [102, 859], [404, 892], [1647, 1241], [320, 323], [1559, 51], [583, 888], [337, 617], [345, 121], [426, 398], [256, 704], [1613, 1110], [680, 805], [1791, 612], [1420, 33], [405, 23], [1619, 559], [561, 362], [500, 966], [40, 763], [485, 1110], [1656, 348], [283, 1270], [551, 50], [407, 241], [1155, 252], [1439, 477], [1689, 1008], [1959, 734], [649, 114], [455, 1252], [1624, 901], [1657, 776], [1513, 631], [672, 974], [1197, 126], [1188, 383], [794, 924], [1852, 994], [630, 1126], [462, 569], [1519, 996], [329, 1390], [587, 523], [1522, 822], [1464, 1138], [1876, 848], [1364, 1081], [1122, 36], [262, 2], [684, 458], [1127, 499], [1388, 788], [1333, 945], [566, 194], [1036, 191], [894, 152], [724, 599], [1419, 1252], [1057, 352], [1358, 1350], [1975, 954], [1188, 932], [941, 902], [1197, 1354], [1138, 819], [1127, 1046], [922, 285], [1141, 665], [975, 481], [1252, 617], [772, 310], [1124, 1269], [875, 0], [874, 614], [1282, 1158], [724, 1204], [1592, 1344], [1917, 1136], [795, 1312], [953, 1305], [830, 438], [1015, 1205], [1468, 1400], [507, 1381], [1013, 784], [737, 43], [621, 1327], [1743, 1142], [805, 1121], [793, 737], [366, 1176], [1279, 455], [876, 1029], [1737, 1378], [1037, 601], [1297, 69], [4, 926], [1566, 415], [869, 1228], [656, 269], [592, 691], [1275, 846], [101, 222], [992, 68], [1044, 1376], [1049, 954], [877, 1389], [126, 32], [1386, 584], [983, 1080], [269, 215], [1771, 911], [721, 1399], [1802, 759], [439, 703]];
+
+var handle_len_rate = 1;
+var circlePaths = [];
+var radius = 50;
+for (var i = 0, l = ballPositions.length; i < l; i++) {
+    var circlePath = new Path.Circle({
+        center: ballPositions[i],
+        radius: 5
+    });
+    circlePaths.push(circlePath);
+}
+
+var largeCircle = new Path.Circle({
+    center: [676, 433],
+    radius: 20
+});
+circlePaths.push(largeCircle);
+
+function onMouseMove(event) {
+    largeCircle.position = event.point;
+    generateConnections(circlePaths);
+}
+
+var connections = new Group();
+function generateConnections(paths) {
+    // Remove the last connection paths:
+    connections.children = [];
+
+    for (var i = 0, l = paths.length; i < l; i++) {
+        for (var j = i - 1; j >= 0; j--) {
+            var path = metaball(paths[i], paths[j], 0.5, handle_len_rate, 111);
+            if (path) {
+                connections.appendTop(path);
+                path.removeOnMove();
+            }
+        }
+    }
+}
+
+generateConnections(circlePaths);
+
+// ---------------------------------------------
+function metaball(ball1, ball2, v, handle_len_rate, maxDistance) {
+    var center1 = ball1.position;
+    var center2 = ball2.position;
+    var radius1 = ball1.bounds.width / 2;
+    var radius2 = ball2.bounds.width / 2;
+    var pi2 = Math.PI / 2;
+    var d = center1.getDistance(center2);
+    var u1, u2;
+
+    if (radius1 == 0 || radius2 == 0)
+        return;
+
+    if (d > maxDistance || d <= Math.abs(radius1 - radius2)) {
+        return;
+    } else if (d < radius1 + radius2) { // case circles are overlapping
+        u1 = Math.acos((radius1 * radius1 + d * d - radius2 * radius2) /
+                (2 * radius1 * d));
+        u2 = Math.acos((radius2 * radius2 + d * d - radius1 * radius1) /
+                (2 * radius2 * d));
+    } else {
+        u1 = 0;
+        u2 = 0;
+    }
+
+    var angle1 = (center2 - center1).getAngleInRadians();
+    var angle2 = Math.acos((radius1 - radius2) / d);
+    var angle1a = angle1 + u1 + (angle2 - u1) * v;
+    var angle1b = angle1 - u1 - (angle2 - u1) * v;
+    var angle2a = angle1 + Math.PI - u2 - (Math.PI - u2 - angle2) * v;
+    var angle2b = angle1 - Math.PI + u2 + (Math.PI - u2 - angle2) * v;
+    var p1a = center1 + getVector(angle1a, radius1);
+    var p1b = center1 + getVector(angle1b, radius1);
+    var p2a = center2 + getVector(angle2a, radius2);
+    var p2b = center2 + getVector(angle2b, radius2);
+
+    // define handle length by the distance between
+    // both ends of the curve to draw
+    var totalRadius = (radius1 + radius2);
+    var d2 = Math.min(v * handle_len_rate, (p1a - p2a).length / totalRadius);
+
+    // case circles are overlapping:
+    d2 *= Math.min(1, d * 2 / (radius1 + radius2));
+
+    radius1 *= d2;
+    radius2 *= d2;
+
+    var path = new Path({
+        segments: [p1a, p2a, p2b, p1b],
+        style: ball1.style,
+        closed: true
+    });
+    var segments = path.segments;
+    segments[0].handleOut = getVector(angle1a - pi2, radius1);
+    segments[1].handleIn = getVector(angle2a + pi2, radius2);
+    segments[2].handleOut = getVector(angle2b - pi2, radius2);
+    segments[3].handleIn = getVector(angle1b + pi2, radius1);
+    return path;
+}
+
+// ------------------------------------------------
+function getVector(radians, length) {
+    return new Point({
+        // Convert radians to degrees:
+        angle: radians * 180 / Math.PI,
+        length: length
+    });
+}
+    </script>
+    <div style="width:100%;height:100%" class="canvas">
+        <canvas resize="true" id="canvas_dots" style="background:white"></canvas>
+    </div>
+            </div>
+        </section>
+
+<!-- slideshow -->
+
+        <section class="background">
+            <div class="content-wrapper" style=" background-color: rgba(0,0,0,0.1)">
+                <div class="slideshow-container" style="width:100%; height:100%; top:10%">
+
+                    <div class="mySlides fade">
+                      <div class="numbertext">1 / 3</div>
+                      <div class="slideText">Caption One</div>
+                      <img src="https://www.w3schools.com/howto/img_nature_wide.jpg" style="height:100%">
+                    </div>
+
+                    <div class="mySlides fade">
+                      <div class="numbertext">2 / 3</div>
+                      <img src="https://www.w3schools.com/howto/img_fjords_wide.jpg" style="height:100%">
+                      <div class="slideText">Caption Two</div>
+                    </div>
+
+                    <div class="mySlides fade">
+                      <div class="numbertext">3 / 3</div>
+                      <img src="https://www.w3schools.com/howto/img_mountains_wide.jpg" style="height:110%">
+                      <div class="slideText">Caption Three</div>
+                    </div>
+
+                    <div class="mySlides fade">
+                      <div class="numbertext">4 / 3</div>
+                      <img src="http://i0.kym-cdn.com/photos/images/facebook/000/674/934/422.jpg" style="width:100%;">
+                      <div class="slideText">Caption Doge</div>
+                    </div>
+
+                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+                        <div style="text-align:center; padding: 10px" class="slideDots">
+                            <span class="slideDot" onclick="currentSlide(1)"></span> 
+                            <span class="slideDot" onclick="currentSlide(2)"></span> 
+                            <span class="slideDot" onclick="currentSlide(3)"></span> 
+                            <span class="slideDot" onclick="currentSlide(4)"></span> 
+                        </div>
+                </div>
+
+<!--                 <div style="text-align:center" class="slideDots">
+                    <span class="slideDot" onclick="currentSlide(1)"></span> 
+                    <span class="slideDot" onclick="currentSlide(2)"></span> 
+                    <span class="slideDot" onclick="currentSlide(3)"></span> 
+                    <span class="slideDot" onclick="currentSlide(4)"></span> 
+                </div>
+
+                <div>&nbsp;</div> -->
+
+<script>
+var slideIndex = 1;
+showSlides(slideIndex);
+
+var cap = document.getElementsByClassName("slideText");
+var time = 5000; // in ms
+var delta = 100; // in ms
+var progress = 0;
+var timer = setInterval(progBar, delta);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+} 
+
+function progBar() {
+  progress += Math.abs(delta / time);
+  cap[slideIndex-1].style.background = "linear-gradient(90deg, rgba(0,0, 0, 0.8) " + progress + "%, rgba(0,0,0,0.4) 0%)";
+  if(progress >= 100)
+  {
+    clearInterval(timer);
+    timer = null;
+    plusSlides(1);
+  }
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("slideDot");
+  if (n > slides.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";  
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+  progress = 0;
+  clearInterval(timer);
+  timer = null;
+  timer = setInterval(progBar, delta);
+}
+</script>
+            </div>
+        </section>
+        <section class="background">
+            <div class="content-wrapper">
+
+                <main>
+                    <section class="photo-container">
+                        <a href="#">
+                            <div class="photo-one">
+                                <div class="photo-mark">
+                                    <img src="http://www.autoayudando.com/wp-content/uploads/Momentos-felices-Los-cincos-que-debes-experimentar-en-la-vida-800x416.jpg" alt="">
+                                </div><!-- 
+                                <p>10</p> -->
+                            </div>
+                        </a>
+                        <a href="#">
+                            <div class="photo-two">
+                                <div class="photo-mark">
+                                    <img src="http://www.autoayudando.com/wp-content/uploads/Superaci%C3%B3n-en-la-vida.jpg" alt="">
+                                </div>
+<!--                                 <p>2</p>
+ -->                            </div>
+                        </a>
+                        <a href="#">
+                            <div class="photo-three">
+                                <div class="photo-mark">
+                                    <img src="http://eldiariodelanena.com/wp-content/uploads/2012/03/how_not_be_happy__by_Lucasricart.jpg" alt="">
+                                </div>
+<!--                                 <p>3</p>
+ -->                            </div>
+                        </a>
+                    </section>
+                </main>
+
+            </div>
+        </section>
+
+
+        <section class="background">
+            <div class="content-wrapper">
+                <img src="map.png" style="width: 100%; height:65%">
+                <footer class="flex-rw" style="bottom:0px">
+                    <ul class="footer-list-top">
+                        <li>
+                            <h4 class="footer-list-header">聯絡我們</h4></li>
+                        <li><a href='/retailers/new-retailers.html' class="generic-anchor footer-list-anchor" itemprop="significantLink">地址</a></li>
+                        <li><a href='/job-openings.html' itemprop="significantLink" class="generic-anchor footer-list-anchor">電話</a></li>
+                    </ul>
+                    <ul class="footer-list-top">
+                        <li>
+                            <h4 class="footer-list-header">合作夥伴</h4></li>
+                        <li><a href='/Angels/cat/id/70' class="generic-anchor footer-list-anchor">NTU Speech</a></li>
+                        <li><a href='/Home-Decor/cat/id/64' class="generic-anchor footer-list-anchor">Coursera</a></li>
+                        <li><a href='/Ladies-Accessories/cat/id/117' class="generic-anchor footer-list-anchor" target="_blank">MOOC TV</a></li>
+                    </ul>
+                    <ul class="footer-list-top">
+                        <li id='help'>
+                            <h4 class="footer-list-header">常見問題</h4></li>
+                        <li><a href='/faq.html' class="generic-anchor footer-list-anchor" itemprop="significantLink">FAQ</a></li>
+                    </ul>
+                    <section class="footer-social-section flex-rw">
+                        <span class="footer-social-overlap footer-social-icons-wrapper">
+                          <!-- <a href="https://www.pinterest.com/paviliongift/" class="generic-anchor" target="_blank" title="Pinterest" itemprop="significantLink"><i class="fa fa-pinterest"></i></a> -->
+                          <a href="https://www.facebook.com/paviliongift" class="generic-anchor" target="_blank" title="Facebook" itemprop="significantLink"><i class="fa fa-facebook"></i></a>
+                          <!-- <a href="https://twitter.com/PavilionGiftCo" class="generic-anchor" target="_blank" title="Twitter" itemprop="significantLink"><i class="fa fa-twitter"></i></a> -->
+                          <!-- <a href="http://instagram.com/paviliongiftcompany" class="generic-anchor" target="_blank" title="Instagram" itemprop="significantLink"><i class="fa fa-instagram"></i></a> -->
+                          <a href="https://www.youtube.com/channel/UCYgUODvd0qXbu_LkUWpTVEg" class="generic-anchor" target="_blank" title="Youtube" itemprop="significantLink"><i class="fa fa-youtube"></i></a>
+                          <!-- <a href="https://plus.google.com/+Paviliongift/posts" class="generic-anchor" target="_blank" title="Google Plus" itemprop="significantLink"><i class="fa fa-google-plus"></i></a> -->
+                        </span>
+                    </section>
+                    <section class="footer-bottom-section flex-rw">
+                        <div class="footer-bottom-wrapper">
+                            <i class="fa fa-copyright" role="copyright"></i>
+                            2017 NTUTI
+                        <!-- <address class="footer-address" role="company address">Taipei, Taiwan</address><span class="footer-bottom-rights"> - All Rights Reserved - </span> -->
+                        </div>
+                        <div class="footer-bottom-wrapper">
+                            <a href="/terms-of-use.html" class="generic-anchor" rel="nofollow">Terms</a> | <a href="/privacy-policy.html" class="generic-anchor" rel="nofollow">Privacy</a>
+                        </div>
+                    </section>
+                </footer>
+            </div>
+        </section>
+    </div>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js'></script>
+    <script src='https://code.jquery.com/jquery-2.1.4.min.js'></script>
+    <script src="js/parallax.js"></script>
+</body>
+
+</html>

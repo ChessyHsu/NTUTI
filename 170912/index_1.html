@@ -5,7 +5,6 @@
     <meta charset="UTF-8"/>
     <link rel="stylesheet" href="css/style.css">
     <script type="text/javascript" src="js/jquery.min.js"></script>
-    <link rel="stylesheet" href="css/parallax.css">
 
     <!--dots-->
     <script type="text/javascript" src="js/paper-full.min.js"></script>
@@ -48,8 +47,6 @@
 
     <!-- dots -->
 
-<div class="container">
-<section class="background">
     <script type="text/paperscript" canvas="canvas_dots">
 // Ported from original Metaball script by SATO Hiroyuki
 // http://park12.wakwak.com/~shp/lc/et/en_aics_script.html
@@ -57,9 +54,11 @@ project.currentStyle = {
     fillColor: 'purple'
 };
 
-var ballPositions = [ [0, 0], [2000, 1400], [0, 1400], [2000, 0], [77, 1311], [1975, 1243], [63, 1156], [1979, 149], [38, 121], [182, 1367], [1930, 260], [1839, 329], [185, 137], [177, 307], [1880, 1345], [227, 1156], [1783, 220], [16, 301], [1995, 358], [222, 992], [1708, 119], [1610, 180], [81, 1015], [66, 412], [1798, 1265], [169, 483], [1846, 495], [305, 1068], [78, 579], [1881, 87], [1710, 473], [1939, 574], [1788, 13], [1495, 245], [264, 862], [357, 779], [1325, 242], [1362, 378], [509, 797], [102, 859], [404, 892], [1647, 1241], [320, 323], [1559, 51], [583, 888], [337, 617], [345, 121], [426, 398], [256, 704], [1613, 1110], [680, 805], [1791, 612], [1420, 33], [405, 23], [1619, 559], [561, 362], [500, 966], [40, 763], [485, 1110], [1656, 348], [283, 1270], [551, 50], [407, 241], [1155, 252], [1439, 477], [1689, 1008], [1959, 734], [649, 114], [455, 1252], [1624, 901], [1657, 776], [1513, 631], [672, 974], [1197, 126], [1188, 383], [794, 924], [1852, 994], [630, 1126], [462, 569], [1519, 996], [329, 1390], [587, 523], [1522, 822], [1464, 1138], [1876, 848], [1364, 1081], [1122, 36], [262, 2], [684, 458], [1127, 499], [1388, 788], [1333, 945], [566, 194], [1036, 191], [894, 152], [724, 599], [1419, 1252], [1057, 352], [1358, 1350], [1975, 954], [1188, 932], [941, 902], [1197, 1354], [1138, 819], [1127, 1046], [922, 285], [1141, 665], [975, 481], [1252, 617], [772, 310], [1124, 1269], [875, 0], [874, 614], [1282, 1158], [724, 1204], [1592, 1344], [1917, 1136], [795, 1312], [953, 1305], [830, 438], [1015, 1205], [1468, 1400], [507, 1381], [1013, 784], [737, 43], [621, 1327], [1743, 1142], [805, 1121], [793, 737], [366, 1176], [1279, 455], [876, 1029], [1737, 1378], [1037, 601], [1297, 69], [4, 926], [1566, 415], [869, 1228], [656, 269], [592, 691], [1275, 846], [101, 222], [992, 68], [1044, 1376], [1049, 954], [877, 1389], [126, 32], [1386, 584], [983, 1080], [269, 215], [1771, 911], [721, 1399], [1802, 759], [439, 703]];
+var ballPositions = [[255, 129], [610, 73], [486, 363],
+    [117, 459], [484, 726], [843, 306], [789, 615], [1049, 82],
+    [1292, 428], [1117, 733], [1352, 86], [92, 798]];
 
-var handle_len_rate = 1;
+var handle_len_rate = 2.5;
 var circlePaths = [];
 var radius = 50;
 for (var i = 0, l = ballPositions.length; i < l; i++) {
@@ -72,7 +71,7 @@ for (var i = 0, l = ballPositions.length; i < l; i++) {
 
 var largeCircle = new Path.Circle({
     center: [676, 433],
-    radius: 20
+    radius: 10
 });
 circlePaths.push(largeCircle);
 
@@ -88,7 +87,7 @@ function generateConnections(paths) {
 
     for (var i = 0, l = paths.length; i < l; i++) {
         for (var j = i - 1; j >= 0; j--) {
-            var path = metaball(paths[i], paths[j], 0.5, handle_len_rate, 111);
+            var path = metaball(paths[i], paths[j], 0.5, handle_len_rate, 300);
             if (path) {
                 connections.appendTop(path);
                 path.removeOnMove();
@@ -170,12 +169,10 @@ function getVector(radians, length) {
     </script>
     <div style="width:100%;height:100%" class="canvas">
         <canvas resize="true" id="canvas_dots" style="background:white"></canvas>
+        <!-- #f2f2f2 -->
     </div>
-</section>
-
     <!-- slideshow -->
 
-<section class="background">
     <div class="slideshow-container" style="width:100%">
 
         <div class="mySlides fade">
@@ -235,14 +232,14 @@ function showSlides(n) {
   dots[slideIndex-1].className += " active";
 }
 </script>
-</section>
+
     <!-- slick -->
 
 
 
     <!-- storywall -->
-<section class="background">
-    <!-- <main>
+
+    <main>
         <section class="photo-container">
             <a href="#">
                 <div class="photo-one">
@@ -270,11 +267,9 @@ function showSlides(n) {
             </a>
         </section>
     </main>
-</section> -->
 
     <!-- footer -->
 
-<section class="background">
     <footer class="flex-rw">
         <ul class="footer-list-top">
             <li>
@@ -316,9 +311,7 @@ function showSlides(n) {
             </div>
         </section>
     </footer>
-</section>
-</div>
-    <script src="js/parallax.js"></script>
+
 
 </body>
 

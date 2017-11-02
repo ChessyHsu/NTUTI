@@ -50,6 +50,7 @@ footer a {
 footer {
   background: #373737;
   margin-top: auto;
+  bottom: 10px;
   width: 100%;
 }
 

@@ -26,18 +26,18 @@ body a{
 .hidden {
   position: relative;
   z-index:100;
-  left:35%;
+  right:-40%;
   top:50%;
   display: none;
-/*   transform: translate(50%, 50%) rotate(10deg); */
+/*  transform: translate(50%, 50%) rotate(10deg);*/
 }
 .circle1 {
   z-index: 10;
   position: absolute;
-  left:12.5%;
-  top:12.5%;
-  width: 75%;
-  height: 75%;
+  left:5%;
+  top:5%;
+  width: 90%;
+  height: 90%;
   background: #3AB795;
   border-radius: 10000px;
 }
@@ -61,10 +61,10 @@ body a{
 .circle3 {
   z-index: 8;
   position: absolute;
-  left:-125%;
-  top:-125%;
-  width: 350%;
-  height: 350%;
+  left:-85%;
+  top:-100%;
+  width: 300%;
+  height: 300%;
   background: #3AB795;
   border-radius: 10000px;
 }
@@ -75,12 +75,22 @@ body a{
   z-index: 7;
   position: absolute;
   left:-125%;
-  top:-125%;
-  width: 500%;
-  height: 500%;
+  top:-150%;
+  width: 400%;
+  height: 400%;
   background: #88D498;
   border-radius: 10000px;
 }
 .circle4:hover {
 	background:#FFFFFF;
 }
+.circle5 {
+  z-index: 6;
+  position: absolute;
+  left:-200%;
+  top:-200%;
+  width: 1000%;
+  height: 1000%;
+  background: grey;
+  border-radius: 10000px;
+} 
