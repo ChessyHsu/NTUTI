@@ -19,5 +19,7 @@ footer.page-footer {
   height: auto;
 	padding: 30px 7%;
 	position: relative;
-  width: 60%;
+}
+.brief{
+  font-size: 20px;
 }
