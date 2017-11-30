@@ -25,18 +25,17 @@
 </head>
 
 <body>
-    <nav role='navigation' class='top'>
+    <nav role='navigation' class='top' style="height:10vh">
         <ul>
             <li><a class="link" href="#">關於我們</a>
                 <ul>
-                    <li><a href="">願景</a></li>
-                    <li><a href="">任務</a></li>
-                    <li><a href="">團隊</a></li>
+                    <li><a href="story/story.html">願景</a></li>
+                    <li><a href="team&mission/mission.html">任務團隊</a></li>
                 </ul>
             </li>
             <li><a class="link" href="#">數位學習</a>
                 <ul>
-                    <li><a href="">coursera課程</a></li>
+                    <li><a href="coursera.html">coursera課程</a></li>
                     <li><a href="">校內課程</a></li>
                     <li><a href="">演講影片</a></li>
                 </ul>
@@ -57,9 +56,11 @@ project.currentStyle = {
     fillColor: 'purple'
 };
 
-var ballPositions = [ [0, 0], [2000, 1400], [0, 1400], [2000, 0], [77, 1311], [1975, 1243], [63, 1156], [1979, 149], [38, 121], [182, 1367], [1930, 260], [1839, 329], [185, 137], [177, 307], [1880, 1345], [227, 1156], [1783, 220], [16, 301], [1995, 358], [222, 992], [1708, 119], [1610, 180], [81, 1015], [66, 412], [1798, 1265], [169, 483], [1846, 495], [305, 1068], [78, 579], [1881, 87], [1710, 473], [1939, 574], [1788, 13], [1495, 245], [264, 862], [357, 779], [1325, 242], [1362, 378], [509, 797], [102, 859], [404, 892], [1647, 1241], [320, 323], [1559, 51], [583, 888], [337, 617], [345, 121], [426, 398], [256, 704], [1613, 1110], [680, 805], [1791, 612], [1420, 33], [405, 23], [1619, 559], [561, 362], [500, 966], [40, 763], [485, 1110], [1656, 348], [283, 1270], [551, 50], [407, 241], [1155, 252], [1439, 477], [1689, 1008], [1959, 734], [649, 114], [455, 1252], [1624, 901], [1657, 776], [1513, 631], [672, 974], [1197, 126], [1188, 383], [794, 924], [1852, 994], [630, 1126], [462, 569], [1519, 996], [329, 1390], [587, 523], [1522, 822], [1464, 1138], [1876, 848], [1364, 1081], [1122, 36], [262, 2], [684, 458], [1127, 499], [1388, 788], [1333, 945], [566, 194], [1036, 191], [894, 152], [724, 599], [1419, 1252], [1057, 352], [1358, 1350], [1975, 954], [1188, 932], [941, 902], [1197, 1354], [1138, 819], [1127, 1046], [922, 285], [1141, 665], [975, 481], [1252, 617], [772, 310], [1124, 1269], [875, 0], [874, 614], [1282, 1158], [724, 1204], [1592, 1344], [1917, 1136], [795, 1312], [953, 1305], [830, 438], [1015, 1205], [1468, 1400], [507, 1381], [1013, 784], [737, 43], [621, 1327], [1743, 1142], [805, 1121], [793, 737], [366, 1176], [1279, 455], [876, 1029], [1737, 1378], [1037, 601], [1297, 69], [4, 926], [1566, 415], [869, 1228], [656, 269], [592, 691], [1275, 846], [101, 222], [992, 68], [1044, 1376], [1049, 954], [877, 1389], [126, 32], [1386, 584], [983, 1080], [269, 215], [1771, 911], [721, 1399], [1802, 759], [439, 703]];
+var ballPositions = [[255, 129], [610, 73], [486, 363],
+    [117, 459], [484, 726], [843, 306], [789, 615], [1049, 82],
+    [1292, 428], [1117, 733], [1352, 86], [92, 798]];
 
-var handle_len_rate = 1;
+var handle_len_rate = 2.25;
 var circlePaths = [];
 var radius = 50;
 for (var i = 0, l = ballPositions.length; i < l; i++) {
@@ -72,7 +73,7 @@ for (var i = 0, l = ballPositions.length; i < l; i++) {
 
 var largeCircle = new Path.Circle({
     center: [676, 433],
-    radius: 20
+    radius: 10
 });
 circlePaths.push(largeCircle);
 
@@ -88,7 +89,7 @@ function generateConnections(paths) {
 
     for (var i = 0, l = paths.length; i < l; i++) {
         for (var j = i - 1; j >= 0; j--) {
-            var path = metaball(paths[i], paths[j], 0.5, handle_len_rate, 111);
+            var path = metaball(paths[i], paths[j], 0.5, handle_len_rate, 300);
             if (path) {
                 connections.appendTop(path);
                 path.removeOnMove();
@@ -168,39 +169,45 @@ function getVector(radians, length) {
     });
 }
     </script>
-    <div style="width:100%;height:100%" class="canvas">
-        <canvas resize="true" id="canvas_dots" style="background:white"></canvas>
-    </div>
+                <div style="text-align: center;width:100%;height:100%">
+                    <div style = "margin-top:40vh;  z-index:10; opacity:.8; height:40vh">
+                        <h1 style="color:black; font-size: 9vw; text-align:left; width:80%; background-color: rgba(0,0,0,0.2)">Connecting <br/>dots.</h1>
+                    </div>
+                    <div style="text-align: center; margin-top:-100vh; width:150%;height:150%;z-index:5" class="canvas">
+                        <canvas resize="true" id="canvas_dots" style="z-index = 10; background:white"></canvas>
+                    </div>
+                </div>
+
             </div>
         </section>
 
 <!-- slideshow -->
 
         <section class="background">
-            <div class="content-wrapper" style=" background-color: rgba(0,0,0,0.1)">
+            <div class="content-wrapper" style=" background-color: rgba(0,0,0,0)">
                 <div class="slideshow-container" style="width:100%; height:100%; top:10%">
 
                     <div class="mySlides fade">
                       <div class="numbertext">1 / 3</div>
                       <div class="slideText">Caption One</div>
-                      <img src="https://www.w3schools.com/howto/img_nature_wide.jpg" style="height:100%">
+                      <img src="https://www.w3schools.com/howto/img_nature_wide.jpg" style="height:120%">
                     </div>
 
                     <div class="mySlides fade">
                       <div class="numbertext">2 / 3</div>
-                      <img src="https://www.w3schools.com/howto/img_fjords_wide.jpg" style="height:100%">
+                      <img src="https://www.w3schools.com/howto/img_fjords_wide.jpg" style="height:120%">
                       <div class="slideText">Caption Two</div>
                     </div>
 
                     <div class="mySlides fade">
                       <div class="numbertext">3 / 3</div>
-                      <img src="https://www.w3schools.com/howto/img_mountains_wide.jpg" style="height:110%">
+                      <img src="https://www.w3schools.com/howto/img_mountains_wide.jpg" style="height:120%">
                       <div class="slideText">Caption Three</div>
                     </div>
 
                     <div class="mySlides fade">
                       <div class="numbertext">4 / 3</div>
-                      <img src="http://i0.kym-cdn.com/photos/images/facebook/000/674/934/422.jpg" style="width:100%;">
+                      <img src="http://i0.kym-cdn.com/photos/images/facebook/000/674/934/422.jpg" style="height:120%">
                       <div class="slideText">Caption Doge</div>
                     </div>
 
@@ -229,8 +236,8 @@ var slideIndex = 1;
 showSlides(slideIndex);
 
 var cap = document.getElementsByClassName("slideText");
-var time = 10000; // in ms
-var delta = 100; // in ms
+var time = 5000; // in ms
+var delta = 200; // in ms
 var progress = 0;
 var timer = setInterval(progBar, delta);
 
@@ -243,7 +250,7 @@ function currentSlide(n) {
 } 
 
 function progBar() {
-  progress += Math.abs(delta / time) * 100;
+  progress += Math.abs(delta / time);
   cap[slideIndex-1].style.background = "linear-gradient(90deg, rgba(0,0, 0, 0.8) " + progress + "%, rgba(0,0,0,0.4) 0%)";
   if(progress >= 100)
   {
@@ -284,8 +291,16 @@ function showSlides(n) {
                             <div class="photo-one">
                                 <div class="photo-mark">
                                     <img src="http://www.autoayudando.com/wp-content/uploads/Momentos-felices-Los-cincos-que-debes-experimentar-en-la-vida-800x416.jpg" alt="">
-                                </div><!-- 
-                                <p>10</p> -->
+                                </div>
+<!--                                 <p>10</p> -->
+                            </div>
+                        </a>
+                        <a href="#">
+                            <div class="photo-five">
+                                <div class="photo-mark">
+                                    <img src="http://www.autoayudando.com/wp-content/uploads/Momentos-felices-Los-cincos-que-debes-experimentar-en-la-vida-800x416.jpg" alt="">
+                                </div>
+<!--                                 <p>10</p> -->
                             </div>
                         </a>
                         <a href="#">
@@ -293,16 +308,24 @@ function showSlides(n) {
                                 <div class="photo-mark">
                                     <img src="http://www.autoayudando.com/wp-content/uploads/Superaci%C3%B3n-en-la-vida.jpg" alt="">
                                 </div>
-<!--                                 <p>2</p>
- -->                            </div>
+<!--                                 <p>2</p> -->
+                            </div>
                         </a>
                         <a href="#">
                             <div class="photo-three">
                                 <div class="photo-mark">
                                     <img src="http://eldiariodelanena.com/wp-content/uploads/2012/03/how_not_be_happy__by_Lucasricart.jpg" alt="">
                                 </div>
-<!--                                 <p>3</p>
- -->                            </div>
+<!--                                 <p>3</p> -->
+                            </div>
+                        </a>
+                        <a href="#">
+                            <div class="photo-four">
+                                <div class="photo-mark">
+                                    <img src="http://eldiariodelanena.com/wp-content/uploads/2012/03/how_not_be_happy__by_Lucasricart.jpg" alt="">
+                                </div>
+<!--                                 <p>3</p> -->
+                            </div>
                         </a>
                     </section>
                 </main>
@@ -313,8 +336,9 @@ function showSlides(n) {
 
         <section class="background">
             <div class="content-wrapper">
-                <img src="map.png" style="width: 100%; height:65%">
-                <footer class="flex-rw" style="bottom:0px">
+<!--                 <img src="map.png" style="height: 65%"> -->
+                <iframe allowfullscreen="" frameborder="0" scrolling="no" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3616.2920676968283!2d121.50746761541714!3d24.990189746199395!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34680273e9b61283%3A0xded6c8037a8daf99!2zMjM15paw5YyX5biC5Lit5ZKM5Y2A5ZKM5bmz6KGXMjPomZ8!5e0!3m2!1szh-TW!2stw!4v1449814029584" style="border:0; width:100vw; height:55vh; margin-top:10vh" width="630"></iframe>
+                <footer class="flex-rw" style="bottom:0px; height:35vh">
                     <ul class="footer-list-top">
                         <li>
                             <h4 class="footer-list-header">聯絡我們</h4></li>

@@ -11,6 +11,7 @@ body {font-family: Verdana,sans-serif;margin:0}
   max-height: 200%;
   position: relative;
   margin: auto;
+  color: white;
 }
 
 /* Next & previous buttons */
