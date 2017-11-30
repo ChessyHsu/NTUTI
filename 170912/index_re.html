@@ -55,6 +55,7 @@
 // Ported from original Metaball script by SATO Hiroyuki
 // http://park12.wakwak.com/~shp/lc/et/en_aics_script.html
 project.currentStyle = {
+  fillColor: 'darkorchid'
 };
 
 var ballPositions = [[255, 129], [610, 73], [486, 363],
@@ -171,7 +172,10 @@ function getVector(radians, length) {
 }
   </script>
         <div style="text-align: center;width:100%;height:100%">
+          <div style = "margin-top:35vh;  z-index:10; opacity:.99; height:40vh">
+            <h1 style="color:black; font-size: 9vw; text-align:left; width:80%; background-color: rgba(200,200,200,0.8)">Connecting <br/>dots.</h1>
           </div>
+          <div style="text-align: center; margin-top:-75vh; width:150%;height:150%;z-index:5" class="canvas">
             <canvas resize="true" id="canvas_dots" style="z-index = 10; background:white"></canvas>
           </div>
         </div>
