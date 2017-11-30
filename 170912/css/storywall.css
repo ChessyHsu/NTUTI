@@ -9,62 +9,77 @@ body {
 a .photo-style,
 a .photo-container .photo-one,
 .photo-container a .photo-one,
+a .photo-container .photo-five,
+.photo-container a .photo-five,
 a .photo-container .photo-two,
 .photo-container a .photo-two,
 a .photo-container .photo-three,
-.photo-container a .photo-three {
+.photo-container a .photo-three,
+a .photo-container .photo-four,
+.photo-container a .photo-four {/*
     box-sizing: border-box;
-    width: 315px;
-    height: 365px;
     background-color: #fff;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     align-items: center;
     box-shadow: 0px 2px 6px 1px rgba(0, 0, 0, 0.5);
-    transition: all .5s ease;
+    background-color: rgba(0, 0, 0, 0.5);*/
+    transition: all .25s ease;
 }
 
 a .photo-style:hover,
 a .photo-container .photo-one:hover,
 .photo-container a .photo-one:hover,
+a .photo-container .photo-five:hover,
+.photo-container a .photo-five:hover,
 a .photo-container .photo-two:hover,
 .photo-container a .photo-two:hover,
 a .photo-container .photo-three:hover,
-.photo-container a .photo-three:hover {
-    transform: rotate(0);
-    transform: scale(1.13);
-    box-shadow: 0px 4px 8px 3px rgba(0, 0, 0, 0.5);
+.photo-container a .photo-three:hover,
+a .photo-container .photo-four:hover,
+.photo-container a .photo-four:hover {
+/*    transform: rotate(0);
+    box-shadow: 0px 4px 8px 3px rgba(0, 0, 0, 0.8);*/
+   transform: scale(1.15);
 }
 
 a .photo-style:hover:hover .photo-mark,
 a .photo-container .photo-one:hover:hover .photo-mark,
 .photo-container a .photo-one:hover:hover .photo-mark,
+a .photo-container .photo-five:hover:hover .photo-mark,
+.photo-container a .photo-five:hover:hover .photo-mark,
 a .photo-container .photo-two:hover:hover .photo-mark,
 .photo-container a .photo-two:hover:hover .photo-mark,
 a .photo-container .photo-three:hover:hover .photo-mark,
-.photo-container a .photo-three:hover:hover .photo-mark {
+.photo-container a .photo-three:hover:hover .photo-mark,
+a .photo-container .photo-four:hover:hover .photo-mark,
+.photo-container a .photo-four:hover:hover .photo-mark {
     position: relative;
 }
 
 a .photo-style:hover:hover .photo-mark:before,
 a .photo-container .photo-one:hover:hover .photo-mark:before,
 .photo-container a .photo-one:hover:hover .photo-mark:before,
+a .photo-container .photo-five:hover:hover .photo-mark:before,
+.photo-container a .photo-five:hover:hover .photo-mark:before,
 a .photo-container .photo-two:hover:hover .photo-mark:before,
 .photo-container a .photo-two:hover:hover .photo-mark:before,
 a .photo-container .photo-three:hover:hover .photo-mark:before,
-.photo-container a .photo-three:hover:hover .photo-mark:before {
+.photo-container a .photo-three:hover:hover .photo-mark:before,
+a .photo-container .photo-four:hover:hover .photo-mark:before,
+.photo-container a .photo-four:hover:hover .photo-mark:before {
     display: flex;
     justify-content: center;
     align-items: center;
     content: "more";
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(255,255,255, 0.2);
     width: 100%;
     height: 100%;
     position: absolute;
     right: 0;
     left: 0;
-    color: #fff;
+    color: #FFF;
     font-size: 2em;
     font-family: "Gloria Hallelujah";
 }
@@ -72,10 +87,14 @@ a .photo-container .photo-three:hover:hover .photo-mark:before,
 a .photo-style .photo-mark,
 a .photo-container .photo-one .photo-mark,
 .photo-container a .photo-one .photo-mark,
+a .photo-container .photo-five .photo-mark,
+.photo-container a .photo-five .photo-mark,
 a .photo-container .photo-two .photo-mark,
 .photo-container a .photo-two .photo-mark,
 a .photo-container .photo-three .photo-mark,
-.photo-container a .photo-three .photo-mark {
+.photo-container a .photo-three .photo-mark,
+a .photo-container .photo-four .photo-mark,
+.photo-container a .photo-four .photo-mark {
     display: flex;
     justify-content: center;
     width: 100%;
@@ -87,21 +106,31 @@ a .photo-container .photo-three .photo-mark,
 a .photo-style .photo-mark img,
 a .photo-container .photo-one .photo-mark img,
 .photo-container a .photo-one .photo-mark img,
+a .photo-container .photo-five .photo-mark img,
+.photo-container a .photo-five .photo-mark img,
 a .photo-container .photo-two .photo-mark img,
 .photo-container a .photo-two .photo-mark img,
 a .photo-container .photo-three .photo-mark img,
-.photo-container a .photo-three .photo-mark img {
+.photo-container a .photo-three .photo-mark img,
+a .photo-container .photo-four .photo-mark img,
+.photo-container a .photo-four .photo-mark img {
     object-fit: cover;
-    background-color: rgba(0, 0, 0, 0.8 );
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0 );
 }
 
 a .photo-style p,
 a .photo-container .photo-one p,
 .photo-container a .photo-one p,
+a .photo-container .photo-five p,
+.photo-container a .photo-five p,
 a .photo-container .photo-two p,
 .photo-container a .photo-two p,
 a .photo-container .photo-three p,
-.photo-container a .photo-three p {
+.photo-container a .photo-three p,
+a .photo-container .photo-four p,
+.photo-container a .photo-four p {
     position: absolute;
     font-family: 'Gloria Hallelujah', cursive;
     font-weight: bold;
@@ -110,7 +139,7 @@ a .photo-container .photo-three p,
     text-align: center;
     right: 0;
     left: 0;
-    bottom: -25px;
+    bottom: -50 px;
 }
 
 .photo-container > div {
@@ -127,8 +156,8 @@ a .photo-container .photo-three p,
     justify-content: center;
 }
 
-.photo-container a:first-child {
-    z-index: 30;
+/*.photo-container a:first-child {
+    z-index: 10;
 }
 
 .photo-container a:nth-child(2) {
@@ -136,23 +165,55 @@ a .photo-container .photo-three p,
 }
 
 .photo-container a:nth-child(2):hover {
-    z-index: 50;
+    z-index: 120;
 }
 
 .photo-container a:nth-child(3) {
     z-index: 30;
 }
+.photo-container a:nth-child(4) {
+    z-index: 30;
+}
+.photo-container a:nth-child(5) {
+    z-index: 30;
+}*/
 
 .photo-container .photo-one {
-    z-index: 60;
-    margin-right: -0px;
+    z-index: 50;
+    margin-top: -50vh;
+    margin-right: 0vw;
+    width: 25vw;
+    height: 50vh;
+}
+
+.photo-container .photo-five {
+    z-index: 40;
+    margin-top: -25vh;
+    margin-bottom: -50vh;
+    margin-left: -25vw;
+    width: 40vw;
+    height: 75vh;
 }
 
 .photo-container .photo-two {
-    z-index: 30;
+    margin-left:  -15vw;
+    z-index: 10;
+    width: 50vw;
+    height: 100vh;
 }
 
 .photo-container .photo-three {
     z-index: 50;
-    margin-left: -100px;
+    margin-top: -50vh;
+    margin-left: 0vw;
+    width: 25vw;
+    height: 50vh;
+}
+
+.photo-container .photo-four {
+    z-index: 50;
+    margin-bottom: -50vh;
+    margin-left: -25vw;
+    width: 25vw;
+    height: 50vh;
 }
