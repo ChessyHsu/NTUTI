@@ -53,6 +53,7 @@ html, body {
     background-image: url(https://s8.postimg.org/lf2udl5np/4_Aihmii.jpg);
 }
 
+
 /* Set stacking context of slides */
 
 .background:nth-child(1) {

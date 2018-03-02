@@ -1,0 +1,31 @@
+main {
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+}
+
+.extra-margins {
+  margin-top: 1rem;
+  margin-bottom: 2.5rem;
+}
+.navbar {
+  background-color: #3b3b3f;
+}
+
+footer.page-footer {
+  background-color: #3b3b3f;
+  margin-top: 2rem;
+}
+
+button{
+  border: 2px solid #1ECD97;
+  border-radius: 40px; 
+  color: #1ECD97;
+/*   display: block; */
+/*   float: left; */
+/*   margin: auto; */
+  padding: 4px;
+  width: 100px;
+  cursor: pointer;
+  font-size: 14px; 
+  margin: 0 5px;
+}
