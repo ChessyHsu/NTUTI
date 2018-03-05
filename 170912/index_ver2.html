@@ -8,8 +8,9 @@
   <link rel="stylesheet" href="css/parallax.css">
   <link rel="stylesheet" href="css/style.css">
 
-  <!-- dots -->
-  <script type="text/javascript" src="js/paper-full.min.js"></script>
+  <!-- stars -->
+  <link rel="stylesheet" href="css/stars.css">
+  
 
   <!-- slideshow -->
   <link rel="stylesheet" href="css/slideshow.css">
@@ -26,7 +27,7 @@
 
 <body>
   <nav role='navigation' class='top' style="height:10vh;min-height:80px">
-    <a  href="index_re.html"><img style="height:9vh; margin-top:1vh; margin-left:1vh" src="https://www.google.com.tw/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"></a>
+    <img style="height:9vh; margin-top:1vh; margin-left:1vh" src="https://www.google.com.tw/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"></img>
     <ul>
       <li><a class="link" href="#">關於我們</a>
         <ul>
@@ -41,144 +42,40 @@
           <li><a href="">演講影片</a></li>
         </ul>
       </li>
-      <li><a class="link" href="blog/blog.html">部落格</a></li>
+      <li><a class="link" href="#">部落格</a></li>
       <li><a class="link" href="#">捐助</a></li>
     </ul>
   </nav>
 
-<!-- dots -->
+<!-- stars -->
 
-  <div w3-include-html="course.html"></div> 
   <div class="container">
     <section class="background">
       <div class="content-wrapper">
-        <script type="text/paperscript" canvas="canvas_dots">
-// Ported from original Metaball script by SATO Hiroyuki
-// http://park12.wakwak.com/~shp/lc/et/en_aics_script.html
-project.currentStyle = {
-  fillColor: 'darkorchid'
-};
-
-var ballPositions = [[255, 129], [610, 73], [486, 363],
-  [117, 459], [484, 726], [843, 306], [789, 615], [1049, 82],
-  [1292, 428], [1117, 733], [1352, 86], [92, 798]];
-
-var handle_len_rate = 2.25;
-var circlePaths = [];
-var radius = 50;
-for (var i = 0, l = ballPositions.length; i < l; i++) {
-  var circlePath = new Path.Circle({
-    center: ballPositions[i],
-    radius: 5
-  });
-  circlePaths.push(circlePath);
-}
-
-var largeCircle = new Path.Circle({
-  center: [676, 433],
-  radius: 10
-});
-circlePaths.push(largeCircle);
-
-function onMouseMove(event) {
-  largeCircle.position = event.point;
-  generateConnections(circlePaths);
-}
-
-var connections = new Group();
-function generateConnections(paths) {
-  // Remove the last connection paths:
-  connections.children = [];
-
-  for (var i = 0, l = paths.length; i < l; i++) {
-    for (var j = i - 1; j >= 0; j--) {
-      var path = metaball(paths[i], paths[j], 0.5, handle_len_rate, 300);
-      if (path) {
-        connections.appendTop(path);
-        path.removeOnMove();
-      }
-    }
-  }
-}
-
-generateConnections(circlePaths);
-
-// ---------------------------------------------
-function metaball(ball1, ball2, v, handle_len_rate, maxDistance) {
-  var center1 = ball1.position;
-  var center2 = ball2.position;
-  var radius1 = ball1.bounds.width / 2;
-  var radius2 = ball2.bounds.width / 2;
-  var pi2 = Math.PI / 2;
-  var d = center1.getDistance(center2);
-  var u1, u2;
-
-  if (radius1 == 0 || radius2 == 0)
-    return;
-
-  if (d > maxDistance || d <= Math.abs(radius1 - radius2)) {
-    return;
-  } else if (d < radius1 + radius2) { // case circles are overlapping
-    u1 = Math.acos((radius1 * radius1 + d * d - radius2 * radius2) /
-        (2 * radius1 * d));
-    u2 = Math.acos((radius2 * radius2 + d * d - radius1 * radius1) /
-        (2 * radius2 * d));
-  } else {
-    u1 = 0;
-    u2 = 0;
-  }
-
-  var angle1 = (center2 - center1).getAngleInRadians();
-  var angle2 = Math.acos((radius1 - radius2) / d);
-  var angle1a = angle1 + u1 + (angle2 - u1) * v;
-  var angle1b = angle1 - u1 - (angle2 - u1) * v;
-  var angle2a = angle1 + Math.PI - u2 - (Math.PI - u2 - angle2) * v;
-  var angle2b = angle1 - Math.PI + u2 + (Math.PI - u2 - angle2) * v;
-  var p1a = center1 + getVector(angle1a, radius1);
-  var p1b = center1 + getVector(angle1b, radius1);
-  var p2a = center2 + getVector(angle2a, radius2);
-  var p2b = center2 + getVector(angle2b, radius2);
-
-  // define handle length by the distance between
-  // both ends of the curve to draw
-  var totalRadius = (radius1 + radius2);
-  var d2 = Math.min(v * handle_len_rate, (p1a - p2a).length / totalRadius);
-
-  // case circles are overlapping:
-  d2 *= Math.min(1, d * 2 / (radius1 + radius2));
-
-  radius1 *= d2;
-  radius2 *= d2;
-
-  var path = new Path({
-    segments: [p1a, p2a, p2b, p1b],
-    style: ball1.style,
-    closed: true
-  });
-  var segments = path.segments;
-  segments[0].handleOut = getVector(angle1a - pi2, radius1);
-  segments[1].handleIn = getVector(angle2a + pi2, radius2);
-  segments[2].handleOut = getVector(angle2b - pi2, radius2);
-  segments[3].handleIn = getVector(angle1b + pi2, radius1);
-  return path;
-}
-
-// ------------------------------------------------
-function getVector(radians, length) {
-  return new Point({
-    // Convert radians to degrees:
-    angle: radians * 180 / Math.PI,
-    length: length
-  });
-}
-  </script>
         <div style="text-align: center;width:100%;height:100%">
-          <div style = "margin-top:35vh;  z-index:10; opacity:.99; height:40vh">
-            <h1 style="color:black; font-size: 9vw; text-align:left; width:80%; background-color: rgba(200,200,200,0.8)">Connecting <br/>dots.</h1>
+            
+          <div style = "margin-top:0vh;z-index:9" id="particle-canvas">
           </div>
-          <div style="text-align: center; margin-top:-75vh; width:150%;height:150%;z-index:5" class="canvas">
-            <canvas resize="true" id="canvas_dots" style="z-index = 10; background:white"></canvas>
-          </div>
+          <script src="js/particles.min.js"></script>
+          <script src="https://rawgit.com/JulianLaval/canvas-particle-network/master/particle-network.min.js"></script>
+          <script>
+// particle.min.js hosted on GitHub
+// Scroll down for initialisation code
+
+!function(a){var b="object"==typeof self&&self.self===self&&self||"object"==typeof global&&global.global===global&&global;"function"==typeof define&&define.amd?define(["exports"],function(c){b.ParticleNetwork=a(b,c)}):"object"==typeof module&&module.exports?module.exports=a(b,{}):b.ParticleNetwork=a(b,{})}(function(a,b){var c=function(a){this.canvas=a.canvas,this.g=a.g,this.particleColor=a.options.particleColor,this.x=Math.random()*this.canvas.width,this.y=Math.random()*this.canvas.height,this.velocity={x:(Math.random()-.5)*a.options.velocity,y:(Math.random()-.5)*a.options.velocity}};return c.prototype.update=function(){(this.x>this.canvas.width+20||this.x<-20)&&(this.velocity.x=-this.velocity.x),(this.y>this.canvas.height+20||this.y<-20)&&(this.velocity.y=-this.velocity.y),this.x+=this.velocity.x,this.y+=this.velocity.y},c.prototype.h=function(){this.g.beginPath(),this.g.fillStyle=this.particleColor,this.g.globalAlpha=.7,this.g.arc(this.x,this.y,1.5,0,2*Math.PI),this.g.fill()},b=function(a,b){this.i=a,this.i.size={width:this.i.offsetWidth,height:this.i.offsetHeight},b=void 0!==b?b:{},this.options={particleColor:void 0!==b.particleColor?b.particleColor:"#fff",background:void 0!==b.background?b.background:"#1a252f",interactive:void 0!==b.interactive?b.interactive:!0,velocity:this.setVelocity(b.speed),density:this.j(b.density)},this.init()},b.prototype.init=function(){if(this.k=document.createElement("div"),this.i.appendChild(this.k),this.l(this.k,{position:"absolute",top:0,left:0,bottom:0,right:0,"z-index":1}),/(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(this.options.background))this.l(this.k,{background:this.options.background});else{if(!/\.(gif|jpg|jpeg|tiff|png)$/i.test(this.options.background))return console.error("Please specify a valid background image or hexadecimal color"),!1;this.l(this.k,{background:'url("'+this.options.background+'") no-repeat center',"background-size":"cover"})}if(!/(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(this.options.particleColor))return console.error("Please specify a valid particleColor hexadecimal color"),!1;this.canvas=document.createElement("canvas"),this.i.appendChild(this.canvas),this.g=this.canvas.getContext("2d"),this.canvas.width=this.i.size.width,this.canvas.height=this.i.size.height,this.l(this.i,{position:"relative"}),this.l(this.canvas,{"z-index":"20",position:"relative"}),window.addEventListener("resize",function(){return this.i.offsetWidth===this.i.size.width&&this.i.offsetHeight===this.i.size.height?!1:(this.canvas.width=this.i.size.width=this.i.offsetWidth,this.canvas.height=this.i.size.height=this.i.offsetHeight,clearTimeout(this.m),void(this.m=setTimeout(function(){this.o=[];for(var a=0;a<this.canvas.width*this.canvas.height/this.options.density;a++)this.o.push(new c(this));this.options.interactive&&this.o.push(this.p),requestAnimationFrame(this.update.bind(this))}.bind(this),500)))}.bind(this)),this.o=[];for(var a=0;a<this.canvas.width*this.canvas.height/this.options.density;a++)this.o.push(new c(this));this.options.interactive&&(this.p=new c(this),this.p.velocity={x:0,y:0},this.o.push(this.p),this.canvas.addEventListener("mousemove",function(a){this.p.x=a.clientX-this.canvas.offsetLeft,this.p.y=a.clientY-this.canvas.offsetTop}.bind(this)),this.canvas.addEventListener("mouseup",function(a){this.p.velocity={x:(Math.random()-.5)*this.options.velocity,y:(Math.random()-.5)*this.options.velocity},this.p=new c(this),this.p.velocity={x:0,y:0},this.o.push(this.p)}.bind(this))),requestAnimationFrame(this.update.bind(this))},b.prototype.update=function(){this.g.clearRect(0,0,this.canvas.width,this.canvas.height),this.g.globalAlpha=1;for(var a=0;a<this.o.length;a++){this.o[a].update(),this.o[a].h();for(var b=this.o.length-1;b>a;b--){var c=Math.sqrt(Math.pow(this.o[a].x-this.o[b].x,2)+Math.pow(this.o[a].y-this.o[b].y,2));c>120||(this.g.beginPath(),this.g.strokeStyle=this.options.particleColor,this.g.globalAlpha=(120-c)/120,this.g.lineWidth=.7,this.g.moveTo(this.o[a].x,this.o[a].y),this.g.lineTo(this.o[b].x,this.o[b].y),this.g.stroke())}}0!==this.options.velocity&&requestAnimationFrame(this.update.bind(this))},b.prototype.setVelocity=function(a){return"fast"===a?1:"slow"===a?.33:"none"===a?0:.66},b.prototype.j=function(a){return"high"===a?5e3:"low"===a?2e4:isNaN(parseInt(a,10))?1e4:a},b.prototype.l=function(a,b){for(var c in b)a.style[c]=b[c]},b});
+
+// Initialisation
+
+var canvasDiv = document.getElementById('particle-canvas');
+var options = {
+  particleColor: '#AAA',
+  background: 'index.jpg',
+  interactive: true,
+  speed: 'fast',
+  density: 'high'
+};
+var particleCanvas = new ParticleNetwork(canvasDiv, options);
+          </script>
         </div>
 
       </div>
@@ -231,10 +128,10 @@ var slideIndex = 1;
 showSlides(slideIndex);
 
 var cap = document.getElementsByClassName("slideText");
-var time = 5000; // in ms
-var delta = 200; // in ms
-var progress = 0;
-var timer = setInterval(progBar, delta);
+var prog_time = 10000; // in ms
+var prog_delta = 25; // in ms
+var slide_prog = 0;
+var timer = setInterval(progBar, prog_delta);
 
 function plusSlides(n) {
   showSlides(slideIndex += n);
@@ -245,13 +142,14 @@ function currentSlide(n) {
 } 
 
 function progBar() {
-  progress += Math.abs(delta / time);
-  cap[slideIndex-1].style.background = "linear-gradient(90deg, rgba(0,0, 0, 0.8) " + progress + "%, rgba(0,0,0,0.4) 0%)";
-  if(progress >= 100)
+  slide_prog += 100 * prog_delta / prog_time;
+  cap[slideIndex-1].style.background = "linear-gradient(90deg, rgba(0,0, 0, 0.8) " + slide_prog + "%, rgba(0,0,0,0.4) 0%)";
+  if(slide_prog >= 99)
   {
-  clearInterval(timer);
-  timer = null;
-  plusSlides(1);
+    slide_prog = 0;
+    clearInterval(timer);
+    timer = null;
+    plusSlides(1);
   }
 }
 
@@ -269,10 +167,10 @@ function showSlides(n) {
   }
   slides[slideIndex-1].style.display = "block";  
   dots[slideIndex-1].className += " active";
-  progress = 0;
+  slide_prog = 0;
   clearInterval(timer);
   timer = null;
-  timer = setInterval(progBar, delta);
+  timer = setInterval(progBar, prog_delta);
 }
 </script>
       </div>
@@ -337,7 +235,7 @@ function showSlides(n) {
     <section class="background">
       <div class="content-wrapper">
 <!--         <img src="map.png" style="height: 65%"> -->
-        <img src="map.png" style="border:0; width:100vw; height:55vh; margin-top:10vh">
+        <iframe allowfullscreen="" frameborder="0" scrolling="no" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3616.2920676968283!2d121.50746761541714!3d24.990189746199395!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34680273e9b61283%3A0xded6c8037a8daf99!2zMjM15paw5YyX5biC5Lit5ZKM5Y2A5ZKM5bmz6KGXMjPomZ8!5e0!3m2!1szh-TW!2stw!4v1449814029584" style="border:0; width:100vw; height:55vh; margin-top:10vh" width="630"></iframe>
         <footer class="flex-rw" style="bottom:0px; height:35vh">
           <ul class="footer-list-top">
             <li>
